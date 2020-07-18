@@ -9,15 +9,17 @@ database_path = "postgres://{}:{}@{}/{}".format('postgres', 'postgres', 'localho
 
 db = SQLAlchemy()
 
-
+#sets up the database
 def setup_db(app, database_path=database_path):
 	app.config["SQLALCHEMY_DATABASE_URI"] = database_path
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    db.app = app
-    db.init_app(app)
-    db.create_all()
+	app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+	db.app = app
+	db.init_app(app)
+	#db.drop_all()
+	db.create_all()
 
-def Movie(db.Model):
+#movie model
+class Movie(db.Model):
 	__tablename__ = 'movies'
 
 	id = Column(Integer, primary_key=True)
@@ -43,10 +45,11 @@ def Movie(db.Model):
 		return {
 			'id': self.id,
 			'title': self.title,
-			'release_data': self.release_date
+			'release_date': self.release_date
 		}
 
-def Actor(db.Model):
+#actor model
+class Actor(db.Model):
 	__tablename__ = 'actors'
 
 	id = Column(Integer, primary_key=True)
