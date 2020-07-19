@@ -3,12 +3,12 @@ from flask import request, _request_ctx_stack
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
-
+import os
 
 
 AUTH0_DOMAIN = 'fs-rolly.eu.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'casting'
+ALGORITHMS = [os.environ['ALGORITHMS']]
+API_AUDIENCE = os.environ['API_AUDIENCE']
 
 ## AuthError Exception
 '''
